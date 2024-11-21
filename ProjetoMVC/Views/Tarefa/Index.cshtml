@@ -1,0 +1,45 @@
+﻿@model List<Tarefa>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Título</th>
+            <th scope="col">Descrição</th>
+            <th scope="col">Prazo</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (Model != null && Model.Any())
+
+        {
+
+            foreach (Tarefa tarefa in Model)
+
+            {
+                <tr>
+                    <td>@tarefa.Titulo</td>
+                    <td>@tarefa.Descricao </td>
+                    <td>@tarefa.Prazo </td>
+
+                    <td>
+                        <div class="d-grid gap-2 d-md-block">
+                            <a type="submit" class="btn btn-outline-primary" role="button" asp-controller="Tarefa" asp-action="Editar" asp-route-id="@tarefa.Id"><ion-icon name="pencil-outline"></ion-icon></a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="d-grid gap-2 d-md-block">
+                            <a type="submit" class="btn btn-outline-danger" role="button" asp-controller="Tarefa" asp-action="Excluir" asp-route-id="@tarefa.Id"><ion-icon name="trash-outline"></ion-icon></a>
+                        </div>
+                    </td>
+                </tr>
+
+            }
+
+        }
+    </tbody>
+</table>
+
+<div class="text-center">
+    <a class="btn btn-outline-primary" type="button" asp-controller="Tarefa" asp-action="AdicionarTarefa">Adicionar tarefa</a>
+</div>
